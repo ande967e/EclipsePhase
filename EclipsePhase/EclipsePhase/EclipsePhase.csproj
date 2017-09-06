@@ -60,6 +60,9 @@
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Help classes\LineSegmentIntersection.cs" />
     <Compile Include="Help classes\MathOperations.cs" />
+    <Compile Include="Level\Internal\Enums\PlatformEnum.cs" />
+    <Compile Include="Level\Internal\Enums\PlayerIndexes.cs" />
+    <Compile Include="Level\LevelLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Collision\Projection.cs" />
     <Compile Include="Components\Projectile.cs" />
@@ -76,6 +79,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Levels.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
