@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<head>
+  <TestLevel>
+    <!-- General Map Information -->
+    <WorldDimension>1280:720</WorldDimension>
+    <BackGround></BackGround>
+    <LevelMusicalTheme></LevelMusicalTheme>
+    <Biome>Industrial</Biome>
+    <PlayerSpawn>500:100</PlayerSpawn>
+
+    <!-- Platforms and Walls -->
+    <Platform>100:400:200:200</Platform>
+    <Platform>300:400:200:200</Platform>
+    <Platform>500:400:200:200</Platform>
+    <Platform>650:450:100:100</Platform>
+    <Platform>750:450:100:100</Platform>
+    <Platform>850:450:100:100</Platform>
+
+    <Platform>850:300:100:100</Platform>
+    <Platform>850:150:100:100</Platform>
+    <Platform>750:150:100:100</Platform>
+    <Platform>650:150:100:100</Platform>
+    <Platform>550:150:100:100</Platform>
+
+    <!-- Clutter and Objects -->
+
+    <!-- Light Sources -->
+
+    <!-- Characters -->
+
+    <!-- Interactables -->
+  </TestLevel>
+</head>
