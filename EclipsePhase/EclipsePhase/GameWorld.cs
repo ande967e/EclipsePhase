@@ -92,21 +92,12 @@ namespace EclipsePhase
             gameObjectPool.CreatePlayer(new Vector2(500, 100));
 
             //Places test environment
-            //With scale 0.5f the dimensions are 200x200
-            gameObjectPool.CreateEnvironment(new Vector2(100, 400), 0.5f);
-            gameObjectPool.CreateEnvironment(new Vector2(300, 400), 0.5f);
-            gameObjectPool.CreateEnvironment(new Vector2(500, 400), 0.5f);
-            gameObjectPool.CreateEnvironment(new Vector2(650, 450), 0.25f);
-            gameObjectPool.CreateEnvironment(new Vector2(750, 450), 0.25f);
-            gameObjectPool.CreateEnvironment(new Vector2(850, 450), 0.25f);
+            gameObjectPool.CreateEnvironment(new Vector2(300, 350), new Vector2(1.5f, 0.25f));
+            gameObjectPool.CreateEnvironment(new Vector2(650, 400), new Vector2(0.25f, 0.5f));
+            gameObjectPool.CreateEnvironment(new Vector2(850, 450), new Vector2(1f, 0.25f));
 
-            gameObjectPool.CreateEnvironment(new Vector2(850, 300), 0.25f);
-            gameObjectPool.CreateEnvironment(new Vector2(850, 150), 0.25f);
-            gameObjectPool.CreateEnvironment(new Vector2(750, 150), 0.25f);
-            gameObjectPool.CreateEnvironment(new Vector2(650, 150), 0.25f);
-            gameObjectPool.CreateEnvironment(new Vector2(550, 150), 0.25f);
-
-
+            gameObjectPool.CreateEnvironment(new Vector2(850, 300), new Vector2(0.25f, 0.25f));
+            gameObjectPool.CreateEnvironment(new Vector2(750, 150), new Vector2(1f, 0.25f));
 
             // TODO: use this.Content to load your game content here
         }

@@ -47,12 +47,14 @@
     <Compile Include="Collision\CollisionCircle.cs" />
     <Compile Include="Collision\CollisionCheck.cs" />
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\EnemyStandard.cs" />
     <Compile Include="EnumLists.cs" />
     <Compile Include="Components\Environment.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Components\Player.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectPool.cs" />
+    <Compile Include="Gravity.cs" />
     <Compile Include="Help classes\MouseInputManager.cs" />
     <Compile Include="Interfaces\IAnimateable.cs" />
     <Compile Include="Interfaces\ICollidable.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Help classes\LineSegmentIntersection.cs" />
     <Compile Include="Help classes\MathOperations.cs" />
+    <Compile Include="Help classes\Physics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Collision\Projection.cs" />
     <Compile Include="Components\Projectile.cs" />

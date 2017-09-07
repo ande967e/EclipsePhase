@@ -25,5 +25,25 @@ namespace EclipsePhase
         {
             return Math.Abs(d) < Epsilon;
         }
+
+        /// <summary>
+        /// Finds the angle between a vector and the horizontal plan, and returns a float.
+        /// </summary>
+        /// <param name="vec"></param>
+        /// <returns></returns>
+        public static float AngleBetweenVectorAndHorizontal(Vector2 vec)
+        {
+            float angle = 0;
+            //finds the angle for which to rotate the aim line
+            if (vec.X == 0 && vec.Y == 0)
+                angle = 0;
+            else if (vec.X == 0)
+                angle = (float)Math.Atan(Math.PI/2);
+            if (vec.X > 0)
+                angle = (float)Math.Atan(vec.Y / vec.X);
+            if (vec.X < 0)
+                angle = (float)Math.Atan(vec.Y / vec.X) + (float)Math.PI;
+            return angle;
+        }
     }
 }

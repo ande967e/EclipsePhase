@@ -10,11 +10,16 @@ using System.Threading.Tasks;
 
 namespace EclipsePhase
 {
-    class PlayerAim : Component, Iloadable, IDrawable
+    class PlayerAim : Component, Iloadable, IDrawable, IUpdateable
     {
         //Used to draw the line
         private Texture2D pointSprite;
         private Rectangle sourceRectPoint;
+
+        public Vector2 EndPoint { get; set; }
+        MouseState mouseS;
+        Vector2 mousePos;
+        public Vector2 PlayerAimVector { get; set; }
 
         public PlayerAim(GameObject obj) : base(obj)
         {
@@ -26,33 +31,28 @@ namespace EclipsePhase
             sourceRectPoint = new Rectangle(0, 0, 1, 1);
         }
 
+        public void Update(GameTime gameTime)
+        {
+            //Finds the direction of the aim line
+            mouseS = Mouse.GetState();
+            mousePos = new Vector2(mouseS.Position.X, mouseS.Position.Y);
+            PlayerAimVector = mousePos - obj.position;
+            PlayerAimVector = Vector2.Normalize(PlayerAimVector);
+            PlayerAimVector *= 2000; //Sets a standard length for the aim line
+            EndPoint = obj.position + PlayerAimVector;
+        }
+
         /// <summary>
         /// Draws unique features to the player, which needs to be drawn.
         /// </summary>
         /// <param name="spriteBatch"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            //Finds the direction of the aim line
-            MouseState mouseS = Mouse.GetState();
-            Vector2 mousePos = new Vector2(mouseS.Position.X, mouseS.Position.Y);
-            Vector2 temp = mousePos - obj.position;
-            temp = Vector2.Normalize(temp);
-            temp *= 2000; //Sets a standard length for the aim line
-            Vector2 endPoint = obj.position + temp;
-            float angle = 0;
-
             //finds the angle for which to rotate the aim line
-            if (temp.X == 0 && temp.Y == 0)
-                angle = 0;
-            else if (temp.X == 0)
-                angle = 0;
-            if (temp.X > 0)
-                angle = (float)Math.Atan(temp.Y / temp.X);
-            if (temp.X < 0)
-                angle = (float)Math.Atan(temp.Y / temp.X) + (float)Math.PI;
+            float angle = MathOperations.AngleBetweenVectorAndHorizontal(PlayerAimVector);
 
             //Finds the length of the aim line
-            float length = TargetPoint(endPoint);
+            float length = TargetPoint(EndPoint);
 
 #if DEBUG //draws the line
             spriteBatch.Draw(pointSprite, obj.position, sourceRectPoint, Color.Red, angle, Vector2.Zero, new Vector2(length, 1), SpriteEffects.None, 1);

@@ -28,7 +28,7 @@ namespace EclipsePhase
         private Vector2 g; //Gravity vector
         private Vector2 push; //Push vector for when colliding with solid objects
         private Vector2 combinedPush; //All push vector added together
-        private bool onGround;
+        public bool OnGround { get; set; }
 
         private float vel;
         private bool jumping;
@@ -68,7 +68,7 @@ namespace EclipsePhase
 
             spriteRenderer = obj.GetComponent<SpriteRenderer>();
             animator = obj.GetComponent<Animator>();
-            onGround = false;
+            OnGround = false;
         }
 
         public void Update(GameTime gameTime)
@@ -120,7 +120,7 @@ namespace EclipsePhase
             }
 
             //Gravity
-            if (onGround)
+            if (OnGround)
                 gravitySpeed = 0;
             gravitySpeed += gravity / gameTime.ElapsedGameTime.Milliseconds;
             if (gravitySpeed > gravityMaxSpeed)
@@ -155,12 +155,12 @@ namespace EclipsePhase
             //Checks if the final push vector is larger than 0
             if (combinedPush.Length() > 0 && combinedPush.Y < 0)
             {
-                onGround = true;
+                OnGround = true;
                 jumping = false;
             }
             else
             {
-                onGround = false;
+                OnGround = false;
             }
         }        
     }

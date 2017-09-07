@@ -53,7 +53,7 @@ namespace EclipsePhase
         /// Creates an environment at the given location, pos.
         /// </summary>
         /// <param name="towerPos"></param>
-        public void CreateEnvironment(Vector2 pos, float scale)
+        public void CreateEnvironment(Vector2 pos, Vector2 scale)
         {
             if (InactiveEnvironmentList.Count > 0)
             {

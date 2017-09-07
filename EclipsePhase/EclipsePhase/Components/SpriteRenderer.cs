@@ -14,7 +14,7 @@ namespace EclipsePhase
     {
         public Texture2D Sprite { get; set; }
         public string SpriteName { get; set; }
-        public float scaleFactor;
+        public Vector2 scaleFactor;
         public float Rotation { get; set; }
         public float layerDepth;
         public Rectangle SpriteRectangle { get; set; }
@@ -23,10 +23,19 @@ namespace EclipsePhase
         public Color Color { get; set; }
         public Rectangle SpriteRectangleForCollision
         {
-            get { return new Rectangle(0, 0, (int)(GameWorld.Instance.SpriteWidth * scaleFactor), (int)(GameWorld.Instance.SpriteHeight * scaleFactor)); }
+            get { return new Rectangle(0, 0, (int)(GameWorld.Instance.SpriteWidth * scaleFactor.X), (int)(GameWorld.Instance.SpriteHeight * scaleFactor.Y)); }
         }
 
         public SpriteRenderer(GameObject obj, string spriteName, float scaleFactor, float rotation, float layerDepth) : base(obj)
+        {
+            this.SpriteName = spriteName;
+            this.scaleFactor = new Vector2(scaleFactor, scaleFactor);
+            this.Rotation = rotation;
+            this.layerDepth = layerDepth;
+            this.Color = Color.White;
+        }
+
+        public SpriteRenderer(GameObject obj, string spriteName, Vector2 scaleFactor, float rotation, float layerDepth) : base(obj)
         {
             this.SpriteName = spriteName;
             this.scaleFactor = scaleFactor;
