@@ -60,6 +60,7 @@
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Help classes\LineSegmentIntersection.cs" />
     <Compile Include="Help classes\MathOperations.cs" />
+    <Compile Include="Level\Internal\Enums\BoxColliderIndexes.cs" />
     <Compile Include="Level\Internal\Enums\PlatformEnum.cs" />
     <Compile Include="Level\Internal\Enums\PlayerIndexes.cs" />
     <Compile Include="Level\LevelLoader.cs" />
