@@ -12,15 +12,17 @@
     <!-- Platform>100:400:200:200:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform -->
     <Platform>300:400:600:200:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
     <!-- Platform>500:400:200:200:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform -->
-    <Platform>650:450:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
-    <Platform>750:450:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
-    <Platform>850:450:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
+    <!-- Platform>650:450:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform -->
+    <Platform>750:450:300:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
+    <!-- Platform>850:450:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform -->
 
     <Platform>850:300:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
-    <Platform>850:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
-    <Platform>750:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
-    <Platform>650:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
-    <Platform>550:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
+
+    <Platform>700:150:400:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform>
+    <!-- Platform>850:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform-->
+    <!-- Platform>750:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform-->
+    <!-- Platform>650:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform-->
+    <!-- Platform>550:150:100:100:rectangle:0|0|0|ff:ColliderType:ColliderInfo:0|0|32|32</Platform-->
 
     <!-- Clutter and Objects -->
 

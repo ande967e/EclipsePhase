@@ -14,7 +14,7 @@ namespace EclipsePhase
     {
         public Texture2D Sprite { get; set; }
         public string SpriteName { get; set; }
-        public float scaleFactor;
+        public float? scaleFactor;
         public float Rotation { get; set; }
         public float layerDepth;
         public Vector2 Offset { get; set; }
@@ -23,6 +23,18 @@ namespace EclipsePhase
         public Rectangle SpriteRectangle {
             get => spriteRectangle.Value;
             set => spriteRectangle = value;
+        }
+
+        public Vector2? Scale
+        {
+            get { return scale; }
+            set
+            {
+                scale = value;
+
+                if (value != null)
+                    origin = value.Value / 2;
+            }
         }
 
         public Rectangle SpriteRectangleForCollision
@@ -45,7 +57,7 @@ namespace EclipsePhase
             this.Rotation = rotation;
             this.layerDepth = layerDepth;
             this.Color = Color.White;
-            //this.spriteRectangle = sourceRectangle;
+            this.spriteRectangle = sourceRectangle;
             this.scale = scale;
 
             if (scale != null)
@@ -71,7 +83,7 @@ namespace EclipsePhase
         public void Draw(SpriteBatch spriteBatch)
         {
             if (scale == null)
-                spriteBatch.Draw(Sprite, obj.position + Offset, SpriteRectangle, Color, Rotation, origin, scaleFactor, SpriteEffects.None, layerDepth);
+                spriteBatch.Draw(Sprite, obj.position + Offset, SpriteRectangle, Color, Rotation, origin, scaleFactor.Value, SpriteEffects.None, layerDepth);
             else
                 spriteBatch.Draw(Sprite, null, new Rectangle((obj.position + Offset).ToPoint(), scale.Value.ToPoint()), SpriteRectangle, origin, Rotation, null, Color, SpriteEffects.None, layerDepth);
         }

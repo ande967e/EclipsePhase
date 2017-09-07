@@ -53,18 +53,25 @@ namespace EclipsePhase
         /// Creates an environment at the given location, pos.
         /// </summary>
         /// <param name="towerPos"></param>
-        public void CreateEnvironment(Vector2 pos, float? scaleFactor = null, string imagePath = null, Color? overlayColor = null, Rectangle? sourceRectangle = null, Vector2? scale = null)
+        public void CreateEnvironment(Vector2 pos, float? scaleFactor = null, string imagePath = "rectangle", Color? overlayColor = null, Rectangle? sourceRectangle = null, Vector2? scale = null)
         {
             if (InactiveEnvironmentList.Count > 0)
             {
-                InactiveEnvironmentList[0].position = pos;
+                GameObject go = InactiveEnvironmentList[0];
+
+                InactiveEnvironmentList.Remove(go);
+
+                go.components.RemoveAll(c => c is SpriteRenderer);
+                go.AddComponnent(new SpriteRenderer(go, imagePath, 0f, 1f, scaleFactor, sourceRectangle, scale));
+                go.GetComponent<SpriteRenderer>().Color = overlayColor.HasValue ? overlayColor.Value : Color.White;
+
                 AddActive.Add(InactiveEnvironmentList[0]);
                 InactiveEnvironmentList.Remove(InactiveEnvironmentList[0]);
             }
             else
             {
                 GameObject obj = new GameObject(pos);
-                obj.AddComponnent(new SpriteRenderer(obj, "rectangle", 0f, 1f, scaleFactor, sourceRectangle, scale));
+                obj.AddComponnent(new SpriteRenderer(obj, imagePath, 0f, 1f, scaleFactor, sourceRectangle, scale));
                 obj.GetComponent<SpriteRenderer>().Color = overlayColor == null ? Color.Black : overlayColor.Value;
                 obj.AddComponnent(new Environment(obj));
                 obj.LoadContent(GameWorld.Instance.Content);

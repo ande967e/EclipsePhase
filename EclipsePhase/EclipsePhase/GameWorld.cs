@@ -90,7 +90,7 @@ namespace EclipsePhase
 
             //Level.LevelLoader.LoadLevel("TestLevel");
 
-            
+
             //Places the player
             gameObjectPool.CreatePlayer(new Vector2(500, 100));
 
@@ -108,7 +108,7 @@ namespace EclipsePhase
             gameObjectPool.CreateEnvironment(new Vector2(750, 150), 0.25f);
             gameObjectPool.CreateEnvironment(new Vector2(650, 150), 0.25f);
             gameObjectPool.CreateEnvironment(new Vector2(550, 150), 0.25f);
-            
+
 
 
             // TODO: use this.Content to load your game content here
