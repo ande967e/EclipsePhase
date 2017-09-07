@@ -53,7 +53,7 @@ namespace EclipsePhase
         /// Creates an environment at the given location, pos.
         /// </summary>
         /// <param name="towerPos"></param>
-        public void CreateEnvironment(Vector2 pos, float scale = 1, string imagePath = null, Color? overlayColor = null, Rectangle? sourceRectangle = null, Vector2? widthHeight = null)
+        public void CreateEnvironment(Vector2 pos, float? scaleFactor = null, string imagePath = null, Color? overlayColor = null, Rectangle? sourceRectangle = null, Vector2? scale = null)
         {
             if (InactiveEnvironmentList.Count > 0)
             {
@@ -64,7 +64,7 @@ namespace EclipsePhase
             else
             {
                 GameObject obj = new GameObject(pos);
-                obj.AddComponnent(new SpriteRenderer(obj, "rectangle", scale, 0f, 1f, sourceRectangle, widthHeight));
+                obj.AddComponnent(new SpriteRenderer(obj, "rectangle", 0f, 1f, scaleFactor, sourceRectangle, scale));
                 obj.GetComponent<SpriteRenderer>().Color = overlayColor == null ? Color.Black : overlayColor.Value;
                 obj.AddComponnent(new Environment(obj));
                 obj.LoadContent(GameWorld.Instance.Content);
@@ -90,7 +90,7 @@ namespace EclipsePhase
         {
             GameObject obj = new GameObject(pos);
             obj.AddComponnent(new Player(obj, new Vector2(1, 0), 3, false));
-            obj.AddComponnent(new SpriteRenderer(obj, "circle", 0.1f, 0f, 1f));
+            obj.AddComponnent(new SpriteRenderer(obj, "circle", 0f, 1f, 0.1f));
             obj.GetComponent<SpriteRenderer>().Color = Color.Black;
             obj.LoadContent(GameWorld.Instance.Content);
             obj.AddComponnent(new CollisionRectangle(obj));

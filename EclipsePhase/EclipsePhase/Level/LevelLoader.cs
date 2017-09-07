@@ -56,7 +56,7 @@ namespace EclipsePhase.Level
                         string[] tempSourceRectangle = temp[(int)PlatformEnum.ImageSourceRectangle].Split('|');
 
                         //Spawns the object on the coordinates matching it, Converts the coordinates from strings at the needed indexes
-                        GameWorld.Instance.gameObjectPool.CreateEnvironment(new Vector2(int.Parse(temp[(int)PlatformEnum.PositionX]), int.Parse(temp[(int)PlatformEnum.PositionY])), 1,
+                        GameWorld.Instance.gameObjectPool.CreateEnvironment(new Vector2(int.Parse(temp[(int)PlatformEnum.PositionX]), int.Parse(temp[(int)PlatformEnum.PositionY])), null,
                             temp[(int)PlatformEnum.ImagePath], overlayColor,
                             new Rectangle(int.Parse(tempSourceRectangle[0]), int.Parse(tempSourceRectangle[1]), int.Parse(tempSourceRectangle[2]), int.Parse(tempSourceRectangle[3])), scale);
                         break;

@@ -36,10 +36,12 @@ namespace EclipsePhase
         private Vector2? scale;
         private Vector2 origin = Vector2.Zero;
 
-        public SpriteRenderer(GameObject obj, string spriteName, float scaleFactor, float rotation, float layerDepth, Rectangle? sourceRectangle = null, Vector2? scale = null) : base(obj)
+        public SpriteRenderer(GameObject obj, string spriteName, float rotation, float layerDepth, float? scaleFactor = null, Rectangle? sourceRectangle = null, Vector2? scale = null) : base(obj)
         {
+            if (scaleFactor == null && scale == null)
+                scaleFactor = 1;
+
             this.SpriteName = spriteName;
-            this.scaleFactor = scaleFactor;
             this.Rotation = rotation;
             this.layerDepth = layerDepth;
             this.Color = Color.White;
@@ -48,6 +50,9 @@ namespace EclipsePhase
 
             if (scale != null)
                 this.origin = scale.Value / 2;
+
+            if (scaleFactor != null)
+                this.scaleFactor = scaleFactor.Value;
         }
 
         public void LoadContent(ContentManager content)
