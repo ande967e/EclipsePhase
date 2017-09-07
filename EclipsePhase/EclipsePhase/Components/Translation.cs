@@ -7,15 +7,18 @@ using Microsoft.Xna.Framework;
 
 namespace EclipsePhase
 {
-    class Gravity : Component, IUpdateable
+    class Translation : Component, IUpdateable
     {
-        public Gravity(GameObject obj) : base(obj)
+        public Vector2 translationVec;
+
+        public Translation(GameObject obj) : base(obj)
         {
         }
 
         public void Update(GameTime gameTime)
         {
-
+            obj.position += translationVec;
+            translationVec = Vector2.Zero;
         }
     }
 }

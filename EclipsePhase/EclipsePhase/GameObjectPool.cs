@@ -93,6 +93,11 @@ namespace EclipsePhase
             obj.AddComponnent(new SpriteRenderer(obj, "circle", 0.1f, 0f, 1f));
             obj.GetComponent<SpriteRenderer>().Color = Color.Black;
             obj.AddComponnent(new PlayerAim(obj));
+
+            obj.AddComponnent(new Gravity(obj));
+            obj.AddComponnent(new Collider(obj));
+            obj.AddComponnent(new Translation(obj));
+
             obj.LoadContent(GameWorld.Instance.Content);
             obj.AddComponnent(new CollisionRectangle(obj));
             obj.GetComponent<CollisionRectangle>().LoadContent(GameWorld.Instance.Content);

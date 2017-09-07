@@ -39,19 +39,12 @@ namespace EclipsePhase
         private float jumpSpeedMax;
         private int horizontalDirection;
 
-        public float gravity; //Gravity acceleration
-        private float gravitySpeed;
-        private float gravityMaxSpeed;
-
         private Vector2 translation;
 
         public Player(GameObject obj, Vector2 direction, int health, bool antiGravity) : base(obj)
         {
             this.direction = direction;
             this.Health = health;
-
-            this.gravity = 9;
-            gravityMaxSpeed = 60;
 
             jumping = true;
             jumpSpeedStart = 30;
@@ -74,18 +67,15 @@ namespace EclipsePhase
         public void Update(GameTime gameTime)
         {
             Move(gameTime);
+            Jump(gameTime);
         }
 
         /// <summary>
         /// Handles player movement.
         /// </summary>
         /// <param name="gameTime"></param>
-        public void Move(GameTime gameTime)
+        private void Move(GameTime gameTime)
         {
-            translation = Vector2.Zero;
-            push = Vector2.Zero;
-            combinedPush = Vector2.Zero;
-
             //Horizontal movement
             if (GameWorld.Instance.Keystate.IsKeyDown(Keys.D) || GameWorld.Instance.Keystate.IsKeyDown(Keys.A))
             {
@@ -103,7 +93,19 @@ namespace EclipsePhase
                 if (vel < 0)
                     vel = 0;
             }
-            translation.X += vel * horizontalDirection / gameTime.ElapsedGameTime.Milliseconds;
+
+            obj.GetComponent<Translation>().translationVec.X += vel * horizontalDirection / gameTime.ElapsedGameTime.Milliseconds;
+        }
+
+        /// <summary>
+        /// Handles Player jump.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        private void Jump(GameTime gameTime)
+        {
+            //Checks if on ground 
+            if (obj.GetComponent<Gravity>() != null && obj.GetComponent<Gravity>().OnGround)
+                jumping = false;
 
             //Jump
             if (GameWorld.Instance.Keystate.IsKeyDown(Keys.Space) && !jumping)
@@ -116,51 +118,7 @@ namespace EclipsePhase
                 jumpSpeed += jumpSpeedAcceleration;
                 if (jumpSpeed > jumpSpeedMax)
                     jumpSpeed = jumpSpeedMax;
-                translation.Y -= jumpSpeed / gameTime.ElapsedGameTime.Milliseconds;
-            }
-
-            //Gravity
-            if (OnGround)
-                gravitySpeed = 0;
-            gravitySpeed += gravity / gameTime.ElapsedGameTime.Milliseconds;
-            if (gravitySpeed > gravityMaxSpeed)
-                gravitySpeed = gravityMaxSpeed;
-
-            translation.Y += gravitySpeed;
-
-            //Collision
-            Collision();
-
-            obj.position += translation /*+ combinedPush*/;
-        }
-
-        /// <summary>
-        /// Handles collision.
-        /// </summary>
-        private void Collision()
-        {
-            List<GameObject> tempColList = GameWorld.Instance.gameObjectPool.CollisionListForPlayer();
-            //Checks for collision and adds to the final pushvector if nessecary
-            for (int i = 0; i < tempColList.Count; i++)
-            {
-                if (tempColList[i].GetComponent<Environment>() != null)
-                {
-                    //Places the object ontop the environment
-                    push = CollisionCheck.CheckV2(obj.GetComponent<CollisionRectangle>().Edges, obj.position + translation, tempColList[i].GetComponent<CollisionRectangle>().Edges, tempColList[i].position);
-                    translation += push;
-                    //Used for checks
-                    combinedPush += push;
-                }
-            }
-            //Checks if the final push vector is larger than 0
-            if (combinedPush.Length() > 0 && combinedPush.Y < 0)
-            {
-                OnGround = true;
-                jumping = false;
-            }
-            else
-            {
-                OnGround = false;
+                obj.GetComponent<Translation>().translationVec.Y -= jumpSpeed / gameTime.ElapsedGameTime.Milliseconds;
             }
         }        
     }
