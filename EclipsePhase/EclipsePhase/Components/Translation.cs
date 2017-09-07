@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 
 namespace EclipsePhase
 {
+    //This is to be added to an object after all other objects that can affect the objects location.
+
     class Translation : Component, IUpdateable
     {
         public Vector2 translationVec;
