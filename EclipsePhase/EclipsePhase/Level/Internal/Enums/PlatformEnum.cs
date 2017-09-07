@@ -18,6 +18,7 @@ namespace EclipsePhase.Level.Internal
         ImagePath = 4,
         OverlayColor = 5,
         ColliderType = 6,
-        ColliderInfo = 7
+        ColliderInfo = 7,
+        ImageSourceRectangle = 8,
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Xna.Framework;
 using EclipsePhase.Level.Internal;
+using System.Globalization;
 
 namespace EclipsePhase.Level
 {
@@ -41,10 +42,23 @@ namespace EclipsePhase.Level
                         //Splits all the info about the platform into an array
                         temp = child.InnerText.Split(':');
                         //Uses the ScaleX to calculate the scale of the object.
-                        float scale = float.Parse(temp[(int)PlatformEnum.ScaleX]) / 400;
+                        Vector2 scale = new Vector2(float.Parse(temp[(int)PlatformEnum.ScaleX]), float.Parse(temp[(int)PlatformEnum.ScaleY]));
+
+                        //Color Preparation
+                        Color overlayColor;
+                        string[] tempColor = temp[(int)PlatformEnum.OverlayColor].Split('|');
+
+                        //Converts the numbers in text, to a color
+                        overlayColor = new Color(int.Parse(tempColor[0], NumberStyles.HexNumber), int.Parse(tempColor[1], NumberStyles.HexNumber), 
+                            int.Parse(tempColor[2], NumberStyles.HexNumber), int.Parse(tempColor[3], NumberStyles.HexNumber));
+
+                        //Getting the images SourceRectangle
+                        string[] tempSourceRectangle = temp[(int)PlatformEnum.ImageSourceRectangle].Split('|');
 
                         //Spawns the object on the coordinates matching it, Converts the coordinates from strings at the needed indexes
-                        GameWorld.Instance.gameObjectPool.CreateEnvironment(new Vector2(int.Parse(temp[(int)PlatformEnum.PositionX]), int.Parse(temp[(int)PlatformEnum.PositionY])), scale);
+                        GameWorld.Instance.gameObjectPool.CreateEnvironment(new Vector2(int.Parse(temp[(int)PlatformEnum.PositionX]), int.Parse(temp[(int)PlatformEnum.PositionY])), 1,
+                            temp[(int)PlatformEnum.ImagePath], overlayColor,
+                            new Rectangle(int.Parse(tempSourceRectangle[0]), int.Parse(tempSourceRectangle[1]), int.Parse(tempSourceRectangle[2]), int.Parse(tempSourceRectangle[3])), scale);
                         break;
                 }
             }

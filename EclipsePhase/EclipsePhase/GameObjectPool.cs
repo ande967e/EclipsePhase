@@ -53,7 +53,7 @@ namespace EclipsePhase
         /// Creates an environment at the given location, pos.
         /// </summary>
         /// <param name="towerPos"></param>
-        public void CreateEnvironment(Vector2 pos, float scale = 1, string imagePath = null, Color? overlayColor = null)
+        public void CreateEnvironment(Vector2 pos, float scale = 1, string imagePath = null, Color? overlayColor = null, Rectangle? sourceRectangle = null, Vector2? widthHeight = null)
         {
             if (InactiveEnvironmentList.Count > 0)
             {
@@ -64,7 +64,7 @@ namespace EclipsePhase
             else
             {
                 GameObject obj = new GameObject(pos);
-                obj.AddComponnent(new SpriteRenderer(obj, "rectangle", scale, 0f, 1f));
+                obj.AddComponnent(new SpriteRenderer(obj, "rectangle", scale, 0f, 1f, sourceRectangle, widthHeight));
                 obj.GetComponent<SpriteRenderer>().Color = overlayColor == null ? Color.Black : overlayColor.Value;
                 obj.AddComponnent(new Environment(obj));
                 obj.LoadContent(GameWorld.Instance.Content);
